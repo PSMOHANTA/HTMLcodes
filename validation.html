@@ -1,0 +1,68 @@
+<body>
+<script lang="script">
+    function validate(frm) {
+        //read data
+       let name=frm.pname.value;
+       let age=frm.page.value;
+       let flag=true;
+//empty validation error message
+document.getElementById("pnameErr").innerHTML="";
+document.getElementById("pageErr").innerHTML="";
+
+//write client side form validation logic
+if(name==""){
+    document.getElementById("pnameErr").innerHTML="<b>Persion Name is required</b>"
+    frm.pname.focus();
+    flag=false
+}else if(name.length<5||name.length>15){
+    document.getElementById("pnameErr").innerHTML="<b>Persion Name must have 5-15 character</b>"
+    frm.pname.focus();
+    flag=false
+}
+if(age==""){
+    document.getElementById("pageErr").innerHTML="<b>Persion age is required</b>"
+    frm.pagee.focus();
+    flag=false
+}else if(isNaN(age)){
+    document.getElementById("pageErr").innerHTML="<b>Persion age must be numeric value</b>"
+    frm.page.focus();
+    frm.page.value="";
+    flag=false
+}else if(age<1||age>125){
+    document.getElementById("pageErr").innerHTML="<b>Persion age must have in between 1-125 year</b>"
+    frm.page.focus();
+    frm.page.value="";
+    flag=false
+}
+    }
+</script>
+<h1 style="color: green; text-align: center;">HTML to Servlet Communication using form</h1>
+<form action="marriageurl" method="POST" onsubmit="return validate(this)">
+<table border="0" align="center" bgcolor="grey">
+    <tr>
+        <td>Person Name:</td>
+        <td><input type="text" name="pname"><span id="pnameErr" style="color: red;">*</span></td>
+    </tr>
+    <tr>
+        <td>Person Age:</td>
+        <td><input type="text" name="page"><span id="pageErr" style="color: red;">*</span></td>
+    </tr>
+    <tr>
+        <td>Persion Gender:</td>
+        <td><input type="radio" name="Gender" value="M">Male<input type="radio" name="Gender" value="F">Female</td>
+    </tr>
+    <tr>
+        <td><input type="submit" value="Check Marriage Elegibility"></td>
+        <td><input type="reset" value="Clear"></td>
+    </tr>
+    <tr>
+        <td><input type="hidden" name="vflag" value="no"></td>
+    </tr>
+</table>
+</form>
+<br><br>
+<h1 style="color: green;"><a href="marriageurl">getSystemDate</a></h1>
+</body>
+
+
+<li style="color: red;">Person age is required</li>
